@@ -1,12 +1,13 @@
 CREATE DATABASE insight_api;
 
-CREATE TABLE posts {
+CREATE TABLE IF NOT EXISTS insights {
     id INT(11) NOT NULL AUTO_COMPLETE PRIMARY KEY;
     title VARCHAR(200) NOT NULL;
-    description TEXT NOT NULL;
-    classification enum('BACKEND', 'DESIGN', 'FRONTENT', 'BASICWEB') NOT NULL;
+    description_idea TEXT NOT NULL;
+    classification enum('Back-end', 'Design', 'Front-end', 'Mobile') NOT NULL;
+    ideia_url TEXT NOT NULL;
     image_url TEXT;
-    created_at TIMESTAMP DEFAULT CURRENT_TIME;
+    created_at DATETIME NOT NULL;
 };
 
-DESCRIBE posts;
+DESCRIBE insights;
