@@ -5,7 +5,7 @@ export async function connect() {
   const connection = await createPool({
     host: 'localhost',
     user: 'root',
-    password: '@aKFfBUvHw4C',
+    password: '',
     database: 'insight_api',
     connectionLimit: 10,
   });
