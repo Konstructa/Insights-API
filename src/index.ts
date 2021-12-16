@@ -1,7 +1,7 @@
-import { App } from './app';
+import { Server } from './server/server';
 
 async function main() {
-  const app = new App();
+  const app = new Server();
   await app.listen();
 }
 
