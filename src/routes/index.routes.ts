@@ -3,7 +3,6 @@ import { indexWelcome } from '../controllers/index.controller';
 
 const router = Router();
 
-router.route('/')
-  .get(indexWelcome);
+router.get('/', indexWelcome);
 
 export default router;
