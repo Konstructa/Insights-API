@@ -5,6 +5,7 @@ import cors from 'cors';
 
 import IndexRoutes from '../routes/index.routes';
 import InsightsRoutes from '../routes/insights.routes';
+import CategoryRoutes from '../routes/categorys.routes';
 
 export class Server {
   private app : Application;
@@ -31,6 +32,7 @@ export class Server {
   routes() {
     this.app.use(IndexRoutes);
     this.app.use('/insights', InsightsRoutes);
+    this.app.use('/insights/category', CategoryRoutes);
   }
 
   async listen() {
