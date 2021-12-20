@@ -27,6 +27,12 @@ export class Server {
     this.app.use(cors());
     this.app.use(bodyParser.json());
     this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use((req, res, next): void => {
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization');
+      res.header('Access-Control-Allow-Methods', 'GET, POST');
+      next();
+    });
   }
 
   routes() {
