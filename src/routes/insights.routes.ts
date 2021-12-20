@@ -5,7 +5,7 @@ const router = Router();
 
 router.route('/')
   .get(path.getAllInsights)
-  .post(path.postInsights);
+  .post(path.createInsights);
 
 router.route('/:id_ideia')
   .get(path.getInsightId)
