@@ -6,8 +6,9 @@ import cors from 'cors';
 import IndexRoutes from '../routes/index.routes';
 import InsightsRoutes from '../routes/insights.routes';
 import CategoryRoutes from '../routes/categorys.routes';
+import ErrorHandling from '../routes/error.routes';
 
-export class Server {
+export class App {
   private app : Application;
 
   // eslint-disable-next-line no-unused-vars
@@ -29,16 +30,17 @@ export class Server {
     this.app.use(bodyParser.urlencoded({ extended: false }));
     this.app.use((req, res, next): void => {
       res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization');
+      res.header('Access-Control-Allow-Headers', '*');
       res.header('Access-Control-Allow-Methods', 'GET, POST');
       next();
     });
   }
 
   routes() {
-    this.app.use(IndexRoutes);
+    this.app.use('/', IndexRoutes);
     this.app.use('/insights', InsightsRoutes);
     this.app.use('/insights/category', CategoryRoutes);
+    this.app.use(ErrorHandling);
   }
 
   async listen() {
