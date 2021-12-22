@@ -1,21 +1,23 @@
 import { Request, Response } from 'express';
 import { connect } from '../sql/db';
 import { Insight } from '../interface/Insights';
+import * as use from '../services/insights.services';
 
 export async function getAllInsights(req: Request, res:Response): Promise<Response> {
-  const conn = await connect();
-  const posts = await conn.query('SELECT * FROM insights ORDER BY created_at DESC');
-  const totalInsights = await conn.query('SELECT COUNT(*) AS quantidade FROM insights');
-  return res.status(200).send({
-    page: 1, results: posts[0], total_pages: 1, quantidade: totalInsights[0],
-  });
+  try {
+    const posts = await use.getAllInsightsService();
+    return res.status(200).send({
+      page: 1, results: posts[0], total_pages: 1, quantidade: 'inserir',
+    });
+  } catch (e) {
+    return res.status(400).json({ status: 400, message: 'Não conseguimos encontrar os elementos' });
+  }
 }
 
 export async function createInsights(req: Request, res:Response) {
   const newInsight: Insight = req.body;
-  const conn = await connect();
   try {
-    await conn.query('INSERT INTO insights SET ?', [newInsight]);
+    await use.createInsightsService(newInsight);
     return res.status(201).send({
       message: 'Ideia enviada com sucesso!',
     });
