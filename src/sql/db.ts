@@ -5,7 +5,7 @@ export async function connect() {
   const connection = createPool({
     host: process.env.HOST || 'localhost',
     user: process.env.USER || 'root',
-    password: process.env.PASSWORD || '@aKFfBUvHw4C',
+    password: process.env.PASSWORD || '',
     database: 'insight_api',
     connectionLimit: 10,
   });
