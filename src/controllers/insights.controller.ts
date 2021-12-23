@@ -1,16 +1,16 @@
 import { Request, Response } from 'express';
-import { connect } from '../sql/db';
 import { Insight } from '../interface/Insights';
 import * as use from '../services/insights.services';
 
 export async function getAllInsights(req: Request, res:Response): Promise<Response> {
   try {
-    const posts = await use.getAllInsightsService();
+    const [posts, totalInsights] = await use.getAllInsightsService();
     return res.status(200).send({
-      page: 1, results: posts[0], total_pages: 1, quantidade: 'inserir',
+      page: 1, results: posts[0], total_pages: 1, total_results: totalInsights[0],
     });
   } catch (e) {
-    return res.status(400).json({ status: 400, message: 'Não conseguimos encontrar os elementos' });
+    const error = e as Error;
+    return res.status(400).json({ status: 400, message: error.message });
   }
 }
 
@@ -22,26 +22,39 @@ export async function createInsights(req: Request, res:Response) {
       message: 'Ideia enviada com sucesso!',
     });
   } catch (e) {
+    const error = e as Error;
     return res.status(400).send({
-      message: 'Não conseguimos adicionar sua ideia, verifique os dados novamente',
+      message: error.message,
     });
   }
 }
 
-export async function getInsightId(req: Request, res:Response): Promise<Response> {
+export async function getInsightById(req: Request, res:Response): Promise<Response> {
   const id = req.params.id_ideia;
-  const conn = await connect();
-  const posts = await conn.query('SELECT * FROM insights WHERE id = ?', [id]);
-  return res.status(200).send({
-    message: 'sucess', results: posts[0],
-  });
+  try {
+    const posts = await use.getInsightIdService(id);
+    return res.status(302).send({
+      message: 'sucess', results: posts[0],
+    });
+  } catch (e) {
+    const error = e as Error;
+    return res.status(404).send({
+      message: error.message,
+    });
+  }
 }
 
 export async function deleteInsightId(req: Request, res:Response) {
   const id = req.params.id_ideia;
-  const conn = await connect();
-  const posts = await conn.query('DELETE * FROM insights WHERE id = ?', [id]);
-  return res.status(405).send({
-    message: ['Você não pode deletar uma ideia', posts[0]],
-  });
+  try {
+    await use.deleteInsightIdService(id);
+    return res.status(202).send({
+      message: 'Ideia deletada',
+    });
+  } catch (e) {
+    const error = e as Error;
+    return res.status(405).send({
+      message: error.message,
+    });
+  }
 }

@@ -1,16 +1,27 @@
 import { Request, Response } from 'express';
-import { connect } from '../sql/db';
+import * as use from '../services/categorys.services';
 
 export async function getNamesCategorys(req: Request, res:Response): Promise<Response> {
-  const conn = await connect();
-  const ver = await conn.query('SELECT classification FROM insights ORDER BY created_at DESC');
-  return res.status(302).send({ message: ['Aqui está a lista de categorias', ver[0]] });
+  try {
+    const posts = await use.getNamesCategorysService();
+    return res.status(302).send({ results: posts[0] });
+  } catch (e) {
+    const error = e as Error;
+    return res.status(404).send({
+      message: error.message,
+    });
+  }
 }
 
 export async function getElementsFromOneCategory(req: Request, res:Response): Promise<Response> {
   const classification = req.params.category;
-  const conn = await connect();
-  const posts = await conn.query(`
-    SELECT * FROM insights WHERE classification = '${classification}' ORDER BY created_at DESC`);
-  return res.status(302).send({ message: ['Aqui está os elementos da categoria que você está procurando', posts[0]] });
+  try {
+    const posts = await use.getElementsFromOneCategoryService(classification);
+    return res.status(302).send({ results: posts[0] });
+  } catch (e) {
+    const error = e as Error;
+    return res.status(404).send({
+      message: error.message,
+    });
+  }
 }
