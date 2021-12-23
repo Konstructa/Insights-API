@@ -6,7 +6,8 @@ import cors from 'cors';
 import IndexRoutes from '../routes/index.routes';
 import InsightsRoutes from '../routes/insights.routes';
 import CategoryRoutes from '../routes/categorys.routes';
-import ErrorHandling from '../routes/error.routes';
+import ErrorRoutes from '../routes/error.routes';
+import VitrineRoutes from '../routes/vitrine.routes';
 
 export class App {
   private app : Application;
@@ -37,10 +38,11 @@ export class App {
   }
 
   routes() {
-    this.app.use('/', IndexRoutes);
+    this.app.use(IndexRoutes);
+    this.app.use('/vitrine', VitrineRoutes);
     this.app.use('/insights', InsightsRoutes);
     this.app.use('/insights/category', CategoryRoutes);
-    this.app.use(ErrorHandling);
+    this.app.use(ErrorRoutes);
   }
 
   async listen() {
