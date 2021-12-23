@@ -3,7 +3,7 @@ import * as path from '../controllers/categorys.controller';
 
 const router = Router();
 
-router.route('/')
+router.route('/classification')
   .get(path.getNamesCategorys);
 
 router.route('/:category')
