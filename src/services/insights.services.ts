@@ -4,8 +4,8 @@ export async function getAllInsightsService() {
   try {
     const conn = await connect();
     const posts = await conn.query('SELECT * FROM insights ORDER BY created_at DESC');
-    /* const totalInsights = await conn.query('SELECT COUNT(*) AS quantidade FROM insights'); */
-    return posts;
+    const totalInsights = await conn.query('SELECT COUNT(*) AS quantidade FROM insights');
+    return [posts, totalInsights];
   } catch (e) {
     throw new Error('Erro ao encontrar os insights');
   }
@@ -20,6 +20,22 @@ export async function createInsightsService(register: any) {
   }
 }
 
-/* export async function getInsightIdService() {}
+export async function getInsightIdService(id: string) {
+  /* if const posts = await conn.query('SELECT EXISTS(SELECT * from insights WHERE id = ?' [id]); */
+  try {
+    const conn = await connect();
+    const posts = await conn.query('SELECT * FROM insights WHERE id = ?', [id]);
+    return posts;
+  } catch (e) {
+    throw new Error('Insight não encontrado');
+  }
+}
 
-export async function deleteInsightIdService() {} */
+export async function deleteInsightIdService(id: string) {
+  try {
+    const conn = await connect();
+    await conn.query('DELETE FROM insights WHERE id = ?', [id]);
+  } catch (e) {
+    throw new Error('Você não tem permissão para deletar uma ideia/Não encontrada');
+  }
+}
