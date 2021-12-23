@@ -8,7 +8,7 @@ router.route('/')
   .post(path.createInsights);
 
 router.route('/:id_ideia')
-  .get(path.getInsightId)
+  .get(path.getInsightById)
   .delete(path.deleteInsightId);
 
 export default router;
