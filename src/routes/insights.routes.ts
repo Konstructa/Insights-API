@@ -3,12 +3,8 @@ import * as path from '../controllers/insights.controller';
 
 const router = Router();
 
-router.route('/')
+router.route('/page=*:page')
   .get(path.getAllInsights)
   .post(path.createInsights);
-
-router.route('/:id_ideia')
-  .get(path.getInsightById)
-  .delete(path.deleteInsightId);
 
 export default router;
