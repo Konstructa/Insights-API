@@ -14,9 +14,10 @@ export async function getNamesCategorys(req: Request, res:Response): Promise<Res
 }
 
 export async function getElementsFromOneCategory(req: Request, res:Response): Promise<Response> {
+  const page = parseInt(req.params.page, 10) || 1;
   const classification = req.params.category;
   try {
-    const posts = await use.getElementsFromOneCategoryService(classification);
+    const posts = await use.getElementsFromOneCategoryService(classification, page);
     return res.status(302).json({ results: posts[0] });
   } catch (e) {
     const error = e as Error;

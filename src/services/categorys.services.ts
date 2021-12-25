@@ -10,11 +10,12 @@ export async function getNamesCategorysService() {
   }
 }
 
-export async function getElementsFromOneCategoryService(classification: string) {
+export async function getElementsFromOneCategoryService(classification: string, page: number) {
+  const skip = (page - 1) * 2;
   try {
     const conn = await connect();
     const posts = await conn.query(`
-    SELECT * FROM insights WHERE classification = '${classification}' ORDER BY created_at DESC`);
+    SELECT * FROM insights WHERE classification = '${classification}' ORDER BY created_at DESC LIMIT ${skip},2`);
     return posts;
   } catch (e) {
     throw new Error('Nenhum elemento foi encontrado.');
