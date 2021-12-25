@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 
 import IndexRoutes from '../routes/index.routes';
+import InsightRoutes from '../routes/insight.routes';
 import InsightsRoutes from '../routes/insights.routes';
 import CategoryRoutes from '../routes/categorys.routes';
 import ErrorRoutes from '../routes/error.routes';
@@ -40,6 +41,7 @@ export class App {
   routes() {
     this.app.use(IndexRoutes);
     this.app.use('/vitrine', VitrineRoutes);
+    this.app.use('/insight', InsightRoutes);
     this.app.use('/insights', InsightsRoutes);
     this.app.use('/insights/category', CategoryRoutes);
     this.app.use(ErrorRoutes);
