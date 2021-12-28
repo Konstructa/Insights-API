@@ -3,7 +3,7 @@ import * as path from '../controllers/insights.controller';
 
 const router = Router();
 
-router.route('/page=*:page')
+router.route('/insights&page=*:page')
   .get(path.getAllInsights)
   .post(path.createInsights);
 

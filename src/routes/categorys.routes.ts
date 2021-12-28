@@ -6,7 +6,7 @@ const router = Router();
 router.route('/')
   .get(path.getNamesCategorys);
 
-router.route('/:category&page=*:page')
+router.route('/:category&page=:page')
   .get(path.getElementsFromOneCategory);
 
 export default router;
