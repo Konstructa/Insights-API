@@ -1,13 +1,12 @@
 import { connect } from '../sql/db';
 
 export async function getAllInsightsService(page: number) {
-  const skip = (page - 1) * 2;
+  const skip = (page - 1) * 10;
   try {
     const conn = await connect();
-    const posts = await conn.query(`SELECT * FROM insights ORDER BY created_at DESC LIMIT ${skip},2`);
+    const posts = await conn.query(`SELECT * FROM insights ORDER BY created_at DESC LIMIT ${skip},10`);
     const totalInsights = await conn.query('SELECT COUNT(*) AS numTotal FROM insights');
-
-    return [posts, totalInsights];
+    return [posts, JSON.parse(JSON.stringify(totalInsights[0]))];
   } catch (e) {
     throw new Error('Erro ao encontrar os insights');
   }
