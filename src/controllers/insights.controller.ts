@@ -6,9 +6,13 @@ export async function getAllInsights(req: Request, res:Response): Promise<Respon
   const page = parseInt(req.params.page, 10) || 1;
   try {
     const [posts, totalInsights] = await use.getAllInsightsService(page);
-    (JSON.parse(JSON.stringify(totalInsights)));
+    const count = {
+      a: page,
+      b: Math.ceil(totalInsights[0].numTotal / 10),
+      c: totalInsights[0].numTotal,
+    };
     return res.status(200).json({
-      page: 1, results: posts[0], total_pages: 1, total_results: (totalInsights[0]),
+      page: count.a, results: posts[0], total_pages: count.b, total_insights: count.c,
     });
   } catch (e) {
     const error = e as Error;
