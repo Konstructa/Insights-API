@@ -9,11 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = require("./server/app");
-function main() {
+exports.getVitrineService = void 0;
+const db_1 = require("../sql/db");
+function getVitrineService() {
     return __awaiter(this, void 0, void 0, function* () {
-        const app = new app_1.App();
-        yield app.listen();
+        try {
+            const conn = yield (0, db_1.connect)();
+            const posts = yield conn.query(`(SELECT * FROM insights GROUP BY classification ORDER BY created_at DESC)
+      UNION
+      (SELECT * FROM insights ORDER BY created_at DESC LIMIT 1)
+    `);
+            return posts;
+        }
+        catch (e) {
+            throw new Error('Erro ao encontrar a vitrine');
+        }
     });
 }
-main();
+exports.getVitrineService = getVitrineService;
