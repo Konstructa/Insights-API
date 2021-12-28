@@ -1,4 +1,5 @@
 import express, { Application } from 'express';
+import * as dotenv from 'dotenv';
 import * as bodyParser from 'body-parser';
 import morgan from 'morgan';
 import cors from 'cors';
@@ -9,6 +10,8 @@ import InsightsRoutes from '../routes/insights.routes';
 import CategoryRoutes from '../routes/categorys.routes';
 import ErrorRoutes from '../routes/error.routes';
 import VitrineRoutes from '../routes/vitrine.routes';
+
+dotenv.config();
 
 export class App {
   private app : Application;
@@ -40,10 +43,10 @@ export class App {
 
   routes() {
     this.app.use(IndexRoutes);
-    this.app.use('/vitrine', VitrineRoutes);
-    this.app.use('/insight', InsightRoutes);
-    this.app.use('/insights', InsightsRoutes);
-    this.app.use('/insights/category', CategoryRoutes);
+    this.app.use('/api/vitrine', VitrineRoutes);
+    this.app.use('/api/insight', InsightRoutes);
+    this.app.use('/api', InsightsRoutes);
+    this.app.use('/api/category', CategoryRoutes);
     this.app.use(ErrorRoutes);
   }
 
