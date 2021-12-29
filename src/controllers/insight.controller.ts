@@ -11,7 +11,7 @@ export async function getInsightById(req: Request, res:Response): Promise<Respon
   } catch (e) {
     const error = e as Error;
     return res.status(404).json({
-      message: 'false', results: error.message,
+      message: 'error', results: error.message,
     });
   }
 }
