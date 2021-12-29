@@ -1,5 +1,5 @@
 import { createPool } from 'mysql2/promise';
-// import Connection from 'mysql2/typings/mysql/lib/Connection';
+//
 
 export async function connect() {
   const connection = createPool({
