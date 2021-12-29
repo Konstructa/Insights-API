@@ -11,6 +11,7 @@ export async function getAllInsights(req: Request, res:Response): Promise<Respon
       b: Math.ceil(totalInsights[0].numTotal / 10),
       c: totalInsights[0].numTotal,
     };
+    if (count.b < count.a) { throw new Error('Essa página não existe ainda'); }
     return res.status(200).json({
       page: count.a, results: posts[0], total_pages: count.b, total_insights: count.c,
     });
@@ -25,6 +26,15 @@ export async function createInsights(req: Request, res:Response) {
   try {
     if (req.body.classification == null) {
       throw new Error('Categoria não inserida');
+    }
+    if (req.body.title == null) {
+      throw new Error('Titulo não inserido');
+    }
+    if (req.body.description_idea == null) {
+      throw new Error('Descrição não inserida');
+    }
+    if (req.body.ideia_url == null) {
+      throw new Error('Link da ideia não inserida');
     }
     await use.createInsightsService(newInsight);
     return res.status(201).json({
