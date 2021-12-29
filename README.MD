@@ -1,10 +1,10 @@
 <h1 align = "center">  📟 Insights API
 
 <p align="center"> 
-    <img alt = "Languages" src="https://img.shields.io/github/languages/count/SEU-USUARIO/NOME-DO-REPOSITORIO">
-    <img alt = "Tamanho" src="https://img.shields.io/github/repo-size/SEU-USUARIO/NOME-DO-REPOSITORIO">
-    <img alt = "Commit" src="https://img.shields.io/github/last-commit/SEU-USUARIO/NOME-DO-REPOSITORIO">
-    <img alt = "Issues" src="https://img.shields.io/github/issues/SEU-USUARIO/NOME-DO-REPOSITORIO">
+    <img alt = "Languages" src="https://img.shields.io/github/languages/count/Konstructa/Insights-API">
+    <img alt = "Tamanho" src="https://img.shields.io/github/repo-size/Konstructa/Insights-API">
+    <img alt = "Commit" src="https://img.shields.io/github/last-commit/Konstructa/Insights-API">
+    <img alt = "Issues" src="https://img.shields.io/github/issues/Konstructa/Insights-API">
 </p>
 
 <p align="center"> 
@@ -21,7 +21,7 @@
 
 - Typescript
 
-- MySQL ou MariaDB
+- MySQL
 
 - ESLint
 
@@ -35,17 +35,19 @@ Rotas da API:
 
 **GET**
 
-https://api-infoinsights.herokuapp.com/api/insight/1, exibe um único insight de acordo com o ID;
+- https://api-infoinsights.herokuapp.com/api/vitrine, exibe 5 elementos, sendo cada um/dois mais recente de cada categoria;
 
-https://api-infoinsights.herokuapp.com/api/insights&page=1, exibe 10 insights por página ;
+- https://api-infoinsights.herokuapp.com/api/insight/:id, exibe um único insight de acordo com o ID;
 
-https://api-infoinsights.herokuapp.com/api/category, exibe todas as categorias disponíveis na API;
+- https://api-infoinsights.herokuapp.com/api/insights&page=:page, exibe 10 insights por página ; 
 
-https://api-infoinsights.herokuapp.com/api/category/back-end&page=1, exibe todos os elementos da categoria requisitada, organizado em 10 elementos por página;
+- https://api-infoinsights.herokuapp.com/api/category, exibe todas as categorias disponíveis na API;
+
+- https://api-infoinsights.herokuapp.com/api/category/:category&page=:page, exibe todos os elementos da categoria requisitada, organizado em 10 elementos por página;
 
 **POST**
 
-https://api-infoinsights.herokuapp.com/api/insights&page=1
+- https://api-infoinsights.herokuapp.com/api/insights&page=1
 
 Modelo (image_url é opcional):
 
@@ -60,6 +62,7 @@ Modelo (image_url é opcional):
 ```
 
 Deploy desta API: https://api-infoinsights.herokuapp.com/
+
 Front-End desta atividade: https://github.com/laisapereira/infojr-insights 
 
 ## :hammer: Instalação
