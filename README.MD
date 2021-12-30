@@ -8,9 +8,9 @@
 </p>
 
 <p align="center"> 
-    <a href="#-Tecnologias">Tecnologias</a>          |
-    <a href="#-Projeto">Projeto</a>          |
-    <a href="#-Instalação">Instalação</a>
+    <a href="#rocket-tecnologias">Tecnologias</a>          |
+    <a href="#computer-projeto">Projeto</a>          |
+    <a href="#hammer-instalação">Instalação</a>
 </p>
 
 ## :rocket: Tecnologias
@@ -55,9 +55,9 @@ Modelo (image_url é opcional):
 }
     "title": 
     "description_idea": 
-     "classification":
-     "ideia_url": 
-     "image_url":
+    "classification":
+    "ideia_url": 
+    "image_url":
 } 
 ```
 
