@@ -35,8 +35,37 @@
 
     main {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+    }
+
+    #texto {
+      margin-top: 30px;
+      width: 85%;
+    }
+
+    .break {
+      word-break: break-all;
+    }
+
+    h5 {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    pre {
+      font-size: 1rem;
+      border: 2px solid #c1acbc;
+      width: 15rem;
+      border-left: 12px solid #EFD0CA;
+      border-radius: 5px;
+      padding: 14px;;
+    }
+
+    #link {
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
   </style>
 
@@ -47,8 +76,41 @@
     <h1>Insights</h1>
   </header>
   <main>
-    <p>Detalhes de como a API funciona:</p>
-
+    <div id = "texto">
+      <p>Para consumir esta API não é necessário nenhuma Key ou Header.</p>
+    <h5 align = "center">GET</h5>
+    <ul>
+      <li  class="break"><a href="https://api-infoinsights.herokuapp.com/api/vitrine">https://api-infoinsights.herokuapp.com/api/vitrine</a>,
+        exibe 5 elementos, sendo cada um/dois mais recente de cada categoria;</li>
+      <li  class="break"><a href="https://api-infoinsights.herokuapp.com/api/insight/14">https://api-infoinsights.herokuapp.com/api/insight/:id</a>,
+        exibe um único insight de acordo com o ID;</li>
+      <li  class="break"><a href="https://api-infoinsights.herokuapp.com/api/insights&page=1">https://api-infoinsights.herokuapp.com/api/insights&page=:page</a>,
+         exibe 10 insights por página ;</li>
+      <li  class="break"><a href="https://api-infoinsights.herokuapp.com/api/category">https://api-infoinsights.herokuapp.com/api/category</a>,
+        exibe todas as categorias disponíveis na API;</li>
+      <li  class="break"><a href="https://api-infoinsights.herokuapp.com/api/category/back-end&page=1">https://api-infoinsights.herokuapp.com/api/category/:category&page=:page</a>,
+        exibe todos os elementos da categoria requisitada,
+        organizado em 10 elementos por página;</li>
+    </ul>
+    <h5 align = "center">POST</h5>
+    <ul>
+      <li  class="break"><a href="https://api-infoinsights.herokuapp.com/api/insights&page=1">https://api-infoinsights.herokuapp.com/api/insights&page=1</a></li>
+    </ul>
+    <pre>
+      <code>
+        }
+            "title":
+            "description_idea":
+            "classification":
+            "ideia_url":
+            "image_url":
+        }
+      </code>
+    </pre>
+    <p id = "link">Link do repositório no Github
+      <a href="https://github.com/Konstructa/Insights-API">https://github.com/Konstructa/Insights-API</a>
+      - Milena.</p>
+    </div>
   </main>
 </body>
 
