@@ -49,6 +49,10 @@ Rotas da API:
 
 - https://api-infoinsights.herokuapp.com/api/insights&page=1
 
+**DELETE**
+
+- https://api-infoinsights.herokuapp.com/api/insight/:id
+
 Modelo (image_url é opcional):
 
 ```
