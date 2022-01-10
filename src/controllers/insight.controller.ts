@@ -25,7 +25,7 @@ export async function deleteInsightId(req: Request, res:Response) {
     });
   } catch (e) {
     const error = e as Error;
-    return res.status(405).json({
+    return res.status(404).json({
       message: error.message,
     });
   }

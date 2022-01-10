@@ -21,8 +21,15 @@ export async function getInsightIdService(id: string) {
 export async function deleteInsightIdService(id: string) {
   try {
     const conn = await connect();
-    await conn.query('DELETE FROM insights WHERE id = ?', [id]);
+    const checkExists = await conn.query(`SELECT EXISTS (SELECT * FROM insights WHERE id = ${id}) as exist`);
+    const checkParse = JSON.parse(JSON.stringify(checkExists[0]));
+    const count = {
+      exists: checkParse[0].exist,
+    };
+    if (count.exists > 0) {
+      await conn.query('DELETE FROM insights WHERE id = ?', [id]);
+    }
   } catch (e) {
-    throw new Error('Não encontrada');
+    throw new Error('Insight não encontrado');
   }
 }

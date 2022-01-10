@@ -11,7 +11,7 @@ export async function getAllInsights(req: Request, res:Response): Promise<Respon
       totalPages: Math.ceil(totalInsights[0].numTotal / 10),
       totalInsights: totalInsights[0].numTotal,
     };
-    if (count.totalPages < count.page) { throw new Error('Essa página não existe ainda'); }
+    if (count.totalPages < count.page || count.page < 0) { throw new Error('Essa página não existe ainda'); }
     return res.status(200).json({
       page: count.page,
       results: posts[0],

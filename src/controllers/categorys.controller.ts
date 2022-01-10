@@ -23,7 +23,7 @@ export async function getElementsFromOneCategory(req: Request, res:Response): Pr
       totalPages: Math.ceil(totalInsights[0].numTotal / 10),
       totalInsights: totalInsights[0].numTotal,
     };
-    if (count.totalPages < count.page) { throw new Error('Essa página não existe ainda'); }
+    if (count.totalPages < count.page || count.page < 0) { throw new Error('Essa página não existe ainda'); }
     return res.status(302).json({
       page: count.page,
       results: posts[0],
