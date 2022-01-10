@@ -6,9 +6,9 @@ export async function getInsightIdService(id: string) {
     const checkExists = await conn.query(`SELECT EXISTS (SELECT * FROM insights WHERE id = ${id}) as exist`);
     const checkParse = JSON.parse(JSON.stringify(checkExists[0]));
     const count = {
-      a: checkParse[0].exist,
+      exists: checkParse[0].exist,
     };
-    if (count.a > 0) {
+    if (count.exists > 0) {
       const posts = await conn.query('SELECT * from insights WHERE id = ?', [id]);
       return posts;
     }
