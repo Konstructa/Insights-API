@@ -1,17 +1,17 @@
 <h1 align = "center">  📟 Insights API
 
-<p align="center"> 
+<h2 align="center"> 
     <img alt = "Languages" src="https://img.shields.io/github/languages/count/Konstructa/Insights-API">
     <img alt = "Tamanho" src="https://img.shields.io/github/repo-size/Konstructa/Insights-API">
     <img alt = "Commit" src="https://img.shields.io/github/last-commit/Konstructa/Insights-API">
     <img alt = "Issues" src="https://img.shields.io/github/issues/Konstructa/Insights-API">
-</p>
+</h2>
 
-<p align="center"> 
+<h2 align="center"> 
     <a href="#rocket-tecnologias">Tecnologias</a>          |
     <a href="#computer-projeto">Projeto</a>          |
     <a href="#hammer-instalação">Instalação</a>
-</p>
+</h2>
 
 ## :rocket: Tecnologias
 
